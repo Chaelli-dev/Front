@@ -7,7 +7,8 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">
+            <div className="navbar-logo"
+            onClick={() => navigate('/')}>
                 <img src="/images/logo.png" alt="Logo" />
                 <span>CHAELLI</span>
             </div>

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 80px; /* 상하 50px, 좌우 80px 여백 */
+    padding: 5% 10%; /* 상하 50px, 좌우 80px 여백 */
     gap: 20px; /* 섹션 간 간격 */
 }
 
@@ -15,26 +15,26 @@
 }
 
 .main-logo {
-    width: 270px;
-    height: 270px;
+    width: 50%;
+    height: 50%;
     margin-bottom: 20px;
 }
 
 .main-left h1 {
-    font-size: 100px;
+    font-size: 400%;
     font-weight: 900;
     margin-bottom: 15px;
     /* justify-content: left; */
 }
 
 .main-left p {
-    font-size: 56px;
+    font-size: 38px;
     line-height: 1.5;
     margin-bottom: 25px;
 }
 
 .main-button {
-    padding: 15px 230px;
+    padding: 15px 180px;
     font-size: 50px;
     /* font-weight: bold; */
     background-color: #ff3366;
@@ -58,7 +58,7 @@
 }
 
 .main-image {
-    width: 72%; 
+    width: 80%; 
     max-width: none; 
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
