@@ -1,24 +1,25 @@
+/* 전체 컨테이너 스타일 */
 .detail-container {
     max-width: 100%;
-    padding: 5% 10%;
-    overflow-y: auto; /* 스크롤 가능 */
-    /* max-width: 800px; */
+    padding: 5% 10%; /* 여백 설정 */
     margin: 0 auto; /* 가운데 정렬 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
 }
 
+/* 섹션 스타일 */
 .detail-section {
     margin-bottom: 50px;
 }
 
 .detail-section h1 {
-    font-size: 60px;
+    font-size: 2.5rem; /* 텍스트 크기 반응형 조정 */
     font-weight: 1000;
     margin-bottom: 20px;
 }
 
 .detail-section p {
-    font-size: 32px;
-    line-height: 1.6;
+    font-size: 1.2rem; /* 텍스트 크기 반응형 조정 */
+    line-height: 1.8;
     margin-bottom: 30px;
 }
 
@@ -30,45 +31,54 @@
     margin-bottom: 30px;
 }
 
+/* 하이라이트 섹션 */
 .detail-highlight {
     text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* 배경색 추가 */
+    border-radius: 8px;
 }
 
 .detail-highlight h2 {
-    font-size: 40px;
+    font-size: 2rem; /* 텍스트 크기 반응형 조정 */
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+/* 버튼 스타일 */
 .register-button {
     background-color: #ff3366;
     color: white;
     padding: 15px 30px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .register-button:hover {
     background-color: #ff0044;
 }
 
+/* 푸터 스타일 */
 .detail-footer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    flex-wrap: wrap; /* 화면이 작아질 때 줄바꿈 허용 */
     gap: 20px;
 }
 
+/* 소셜 링크 스타일 */
 .social-link {
     text-align: center;
 }
 
 .social-icon {
-    width: 80px; /* 로고 크기 */
-    height: 80px;
+    width: 60px; /* 로고 크기 반응형 조정 */
+    height: 60px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -78,7 +88,64 @@
 }
 
 .social-link p {
-    font-size: 14px;
+    font-size: 0.9rem; /* 텍스트 크기 반응형 조정 */
     color: black;
     margin: 0;
+}
+
+/* 반응형 처리 */
+/* 태블릿 크기 이하 */
+@media (max-width: 768px) {
+    .detail-section h1 {
+        font-size: 2rem; /* 텍스트 크기 축소 */
+    }
+
+    .detail-section p {
+        font-size: 1rem; /* 텍스트 크기 축소 */
+    }
+
+    .detail-highlight h2 {
+        font-size: 1.8rem; /* 하이라이트 텍스트 축소 */
+    }
+
+    .detail-footer {
+        gap: 15px; /* 푸터 간격 축소 */
+    }
+
+    .social-icon {
+        width: 50px; /* 로고 크기 축소 */
+        height: 50px;
+    }
+
+    .social-link p {
+        font-size: 0.8rem; /* 텍스트 크기 축소 */
+    }
+}
+
+/* 모바일 크기 이하 */
+@media (max-width: 480px) {
+    .detail-container {
+        padding: 5%; /* 좌우 여백 축소 */
+    }
+
+    .detail-section h1 {
+        font-size: 1.8rem; /* 텍스트 크기 축소 */
+    }
+
+    .detail-section p {
+        font-size: 0.9rem; /* 텍스트 크기 축소 */
+    }
+
+    .detail-highlight h2 {
+        font-size: 1.5rem; /* 하이라이트 텍스트 축소 */
+    }
+
+    .social-icon {
+        width: 40px; /* 로고 크기 더 축소 */
+        height: 40px;
+    }
+
+    .social-link p {
+        font-size: 0.7rem; /* 텍스트 크기 축소 */
+    }
 }

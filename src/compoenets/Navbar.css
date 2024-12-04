@@ -4,42 +4,38 @@
   justify-content: space-between;
   align-items: center;
   height: 100px; /* 상단바 높이 */
-  padding: 0 80px; /* 좌우 여백 80px */
+  padding: 0 20px; /* 좌우 여백 */
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 미세한 그림자 효과 */
   position: sticky; /* 페이지 스크롤 시 상단에 고정 */
   top: 0;
   z-index: 1000; /* 상단바 우선순위 설정 */
+  flex-wrap: wrap; /* 줄바꿈 허용 */
 }
 
 /* 로고 섹션 */
 .navbar-logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   cursor: pointer; /* 클릭 가능하도록 설정 */
 }
 
 .navbar-logo img {
-  width: 50px;
-  height: 50px;
-  margin-right: 15px; /* 로고와 텍스트 간격 */
+  width: 40px;
+  height: 40px;
 }
 
 .navbar-logo span {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 1000;
   color: #000;
-  transition: color 0.3s ease; /* 부드러운 전환 효과 */
-}
-
-.navbar-logo:hover span {
-  color: #ff3366; /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 버튼 그룹 */
 .navbar-buttons {
   display: flex;
-  gap: 10px; /* 버튼 간 간격 */
+  gap: 10px;
 }
 
 /* 버튼 공통 스타일 */
@@ -47,9 +43,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 25px; /* 버튼 크기 */
+  padding: 10px 20px; /* 버튼 크기 */
   border: none;
-  font-size: 18px;
+  font-size: 14px; /* 글씨 크기 조정 */
   font-weight: bold;
   border-radius: 5px; /* 모서리 둥글게 처리 */
   cursor: pointer;
@@ -64,8 +60,6 @@
 
 .navbar-buttons .register-btn:hover {
   background-color: #ff0044; /* 호버 시 배경색 */
-  transform: scale(1.1); /* 크기 확대 */
-  box-shadow: 0 4px 10px rgba(255, 51, 102, 0.3); /* 그림자 효과 */
 }
 
 /* 로그인 버튼 */
@@ -77,22 +71,51 @@
 
 .navbar-buttons .login-btn:hover {
   background-color: #ffe6eb; /* 호버 시 배경색 */
-  transform: scale(1.1); /* 크기 확대 */
-  box-shadow: 0 4px 10px rgba(255, 51, 102, 0.3); /* 그림자 효과 */
 }
 
 /* 반응형 처리 */
+/* 태블릿 크기 */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column; /* 상단바를 세로로 정렬 */
-    padding: 10px;
+    height: auto;
+    padding: 15px 10px; /* 여백 조정 */
   }
 
   .navbar-logo {
+    justify-content: center;
     margin-bottom: 10px;
   }
 
+  .navbar-buttons {
+    justify-content: center;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+    gap: 10px;
+  }
+
   .navbar-buttons .btn {
-    width: 100%; /* 버튼 너비를 100%로 확장 */
+    width: 100%; /* 버튼 너비를 화면 너비에 맞춤 */
+  }
+}
+
+/* 모바일 크기 */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px; /* 패딩 축소 */
+  }
+
+  .navbar-logo img {
+    width: 30px; /* 로고 크기 축소 */
+    height: 30px;
+  }
+
+  .navbar-logo span {
+    font-size: 18px; /* 텍스트 크기 축소 */
+  }
+
+  .navbar-buttons .btn {
+    width: 100%; /* 버튼 너비 100% */
+    font-size: 12px; /* 글씨 크기 축소 */
+    padding: 8px 15px; /* 버튼 패딩 축소 */
   }
 }

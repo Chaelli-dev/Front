@@ -3,40 +3,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5% 10%; /* 상하 50px, 좌우 80px 여백 */
+    padding: 5% 10%; /* 상하, 좌우 여백 */
     gap: 20px; /* 섹션 간 간격 */
+    flex-wrap: wrap; /* 화면이 작아질 때 줄바꿈 허용 */
 }
 
 /* 왼쪽 섹션 스타일 */
 .main-left {
-    flex: 3; /* 30% */
-    /* text-align: center; */
-    z-index: 2; /* 오른쪽 이미지 위로 올라오도록 설정 */
+    flex: 3; /* 비율 30% */
+    z-index: 2;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    margin-bottom: 20px; /* 작은 화면에서 간격 추가 */
 }
 
 .main-logo {
-    width: 50%;
-    height: 50%;
+    width: 80%; /* 로고 크기 반응형 조정 */
+    height: auto; /* 비율 유지 */
     margin-bottom: 20px;
 }
 
 .main-left h1 {
-    font-size: 400%;
+    font-size: 4rem; /* 텍스트 크기 반응형 조정 */
     font-weight: 900;
     margin-bottom: 15px;
-    /* justify-content: left; */
 }
 
 .main-left p {
-    font-size: 38px;
+    font-size: 1.5rem; /* 텍스트 크기 반응형 조정 */
     line-height: 1.5;
     margin-bottom: 25px;
 }
 
 .main-button {
-    padding: 15px 180px;
-    font-size: 50px;
-    /* font-weight: bold; */
+    padding: 15px 50px; /* 버튼 패딩 반응형 조정 */
+    font-size: 1.2rem; /* 버튼 텍스트 크기 반응형 조정 */
     background-color: #ff3366;
     color: white;
     border: none;
@@ -50,17 +50,184 @@
 
 /* 오른쪽 섹션 스타일 */
 .main-right {
-    flex: 6; /* 70% */
+    flex: 6; /* 비율 70% */
     position: relative;
-    display: flex; /* Flexbox 적용 */
-    justify-content: center; /* 가로 가운데 정렬 */
-    align-items: center; /* 세로 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-image {
-    width: 80%; 
-    max-width: none; 
+    width: 100%; /* 이미지가 컨테이너를 채움 */
+    max-width: 500px; /* 최대 크기 제한 */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1; /* 왼쪽 콘텐츠 아래에 위치 */
+    z-index: 1;
+}
+
+/* ABOUT 및 상세 내용 */
+.detail-container {
+    padding: 5% 10%; /* 상하좌우 여백 */
+}
+
+.detail-section {
+    margin-bottom: 50px; /* 섹션 간 간격 */
+}
+
+.detail-section h1 {
+    font-size: 2.5rem; /* 제목 크기 반응형 조정 */
+    margin-bottom: 20px;
+}
+
+.detail-section p {
+    font-size: 1.2rem; /* 텍스트 크기 반응형 조정 */
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.detail-image {
+    width: 100%;
+    max-width: 800px; /* 최대 크기 제한 */
+    height: auto; /* 비율 유지 */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 하이라이트 섹션 */
+.detail-highlight {
+    background-color: #ff3366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.detail-highlight h2 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* 푸터 */
+.detail-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 10px;
+    flex-wrap: wrap; /* 화면이 작아질 때 줄바꿈 허용 */
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 5%; /* 여백 축소 */
+        flex-direction: column; /* 수직 정렬 */
+    }
+
+    .main-left {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .main-logo {
+        width: 60%; /* 로고 크기 축소 */
+    }
+
+    .main-left h1 {
+        font-size: 2.5rem; /* 제목 크기 축소 */
+    }
+
+    .main-left p {
+        font-size: 1.2rem; /* 텍스트 크기 축소 */
+    }
+
+    .main-button {
+        padding: 10px 30px; /* 버튼 패딩 축소 */
+        font-size: 1rem;
+    }
+
+    .main-right {
+        margin-bottom: 20px;
+    }
+
+    .main-image {
+        width: 90%;
+        max-width: none;
+    }
+
+    .detail-section h1 {
+        font-size: 2rem; /* 제목 크기 축소 */
+    }
+
+    .detail-section p {
+        font-size: 1rem; /* 텍스트 크기 축소 */
+    }
+
+    .detail-image {
+        max-width: 100%; /* 이미지 크기 조정 */
+    }
+
+    .detail-highlight h2 {
+        font-size: 1.5rem; /* 하이라이트 텍스트 축소 */
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 5%; /* 여백 축소 */
+    }
+
+    .main-logo {
+        width: 50%; /* 로고 크기 더 축소 */
+    }
+
+    .main-left h1 {
+        font-size: 2rem;
+    }
+
+    .main-left p {
+        font-size: 1rem;
+    }
+
+    .main-button {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+
+    .main-image {
+        width: 100%;
+    }
+
+    .detail-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .detail-section p {
+        font-size: 0.9rem;
+    }
+
+    .detail-highlight h2 {
+        font-size: 1.2rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-link p {
+        font-size: 0.8rem;
+    }
 }

@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    gap: 20px; /* 버튼 간 간격 */
+    padding: 0 20px; /* 양쪽 패딩 추가 */
 }
 
 /* 네이버 로그인 버튼 */
@@ -11,15 +13,16 @@
     background-color: #1ec800;
     color: white;
     border: none;
-    padding: 20px 40px; /* 2배로 증가 */
-    font-size: 32px; /* 2배로 증가 */
+    padding: 15px 30px;
+    font-size: 24px;
     font-weight: bold;
-    border-radius: 8px; /* 모서리를 조금 더 둥글게 */
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    margin-bottom: 30px; /* 간격 2배로 증가 */
+    margin-bottom: 20px;
     cursor: pointer;
-    width: 560px; /* 2배로 증가 */
+    width: 100%; /* 버튼 너비를 100%로 설정 */
+    max-width: 560px; /* 최대 너비 제한 */
     justify-content: center;
 }
 
@@ -28,23 +31,24 @@
 }
 
 .naver-logo {
-    width: 60px; /* 2배로 증가 */
-    height: 60px; /* 2배로 증가 */
-    margin-right: 20px; /* 로고와 텍스트 사이 간격 2배로 증가 */
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
 }
 
 /* 구글 로그인 버튼 */
 .google-login-button {
     background-color: white;
     color: #757575;
-    border: 2px solid #ccc; /* 테두리 두께 증가 */
-    padding: 20px 40px; /* 2배로 증가 */
-    font-size: 32px; /* 2배로 증가 */
+    border: 2px solid #ccc;
+    padding: 15px 30px;
+    font-size: 24px;
     font-weight: bold;
-    border-radius: 8px; /* 모서리를 조금 더 둥글게 */
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    width: 560px; /* 2배로 증가 */
+    width: 100%; /* 버튼 너비를 100%로 설정 */
+    max-width: 560px; /* 최대 너비 제한 */
     justify-content: center;
     cursor: pointer;
 }
@@ -54,7 +58,55 @@
 }
 
 .google-logo {
-    width: 40px; /* 2배로 증가 */
-    height: 40px; /* 2배로 증가 */
-    margin-right: 20px; /* 로고와 텍스트 사이 간격 2배로 증가 */
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+/* 반응형 처리 */
+/* 태블릿 크기 이하 */
+@media (max-width: 768px) {
+    .naver-login-button,
+    .google-login-button {
+        padding: 12px 20px;
+        font-size: 20px;
+        max-width: 400px; /* 최대 너비 축소 */
+    }
+
+    .naver-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .google-logo {
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+}
+
+/* 모바일 크기 이하 */
+@media (max-width: 480px) {
+    .login-page {
+        margin-top: 30px;
+        gap: 15px; /* 버튼 간 간격 축소 */
+    }
+
+    .naver-login-button,
+    .google-login-button {
+        padding: 10px 15px;
+        font-size: 16px;
+        max-width: 300px; /* 최대 너비 축소 */
+    }
+
+    .naver-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .google-logo {
+        width: 30px;
+        height: 30px;
+    }
 }
