@@ -48,7 +48,7 @@ const Mypage = () => {
             }
 
             try {
-                const response = await fetch("http://3.36.7.39:8080/v1/api/user-images", {
+                const response = await fetch("https://www.chaelli.org/v1/api/user-images", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
@@ -102,7 +102,7 @@ const Mypage = () => {
                 return;
             }
 
-            const response = await fetch("http://3.36.7.39:8080/v1/api/upload-code", {
+            const response = await fetch("https://www.chaelli.org/v1/api/upload-code", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
