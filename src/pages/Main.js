@@ -48,7 +48,11 @@ const Main = () => {
                         하루에 두번 분무를 해 주지 않아도 여러분의 곁에 쭉 있어줄 거예요.<br />
                         <br />
                         여러분의 저장공간 한켠에 데이터 놓을 자리만 놔 주신다면 예상수명은 100년, 아니 평생일지도요.<br />
-                        이 도마뱀을 입양하신 도마뱀 집사님들과 이야기를 나누고 싶으시다면 이쪽으로 (오픈톡 링크)<br />
+                        이 도마뱀을 입양하신 도마뱀 집사님들과 이야기를 나누고 싶으시다면 &nbsp;
+                        <a href="https://open.kakao.com/o/gkLQY12g" target="_blank" rel="noopener noreferrer">
+                            여기로(오픈톡 링크)
+                        </a>
+                        &nbsp;와주세요.
                     </p>
                     <img src="/images/detail_main_big.png" alt="About Project" className="detail-image" />
                 </div>

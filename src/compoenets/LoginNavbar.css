@@ -7,39 +7,45 @@
     padding: 0 80px; /* 양쪽 여백 80px */
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* 반응형: 요소가 줄바꿈될 수 있도록 설정 */
 }
 
 /* 왼쪽 섹션 */
 .navbar-left {
     display: flex;
     align-items: center;
+    gap: 10px; /* 로고와 텍스트, 링크 간 간격 */
+    flex-wrap: wrap; /* 줄바꿈 가능 */
 }
+
 .navbar-left span {
     font-size: 24px;
     font-weight: 1000;
     color: #000;
     transition: color 0.3s ease; /* 부드러운 전환 효과 */
-  }
+}
+
 .navbar-left:hover span {
     color: #ff3366; /* 호버 시 텍스트 색상 변경 */
-  }
+}
+
 /* 로고 이미지 */
 .navbar-logo {
     width: 50px;
     height: 50px;
-    margin-right: 15px; /* 로고와 텍스트 간격 */
+    margin-right: 10px; /* 로고와 텍스트 간격 */
 }
 
 /* 타이틀 텍스트 */
 .navbar-title {
     font-size: 24px;
-    font-weight: 1000; /* 굵은 글씨 */
-    margin-right: 50px; /* 타이틀과 링크 간격 */
+    font-weight: 1000;
+    margin-right: 30px; /* 타이틀과 링크 간 간격 */
 }
 
 .navbar-link {
     font-size: 20px;
-    margin-right: 20px; /* 링크 간 간격 */
+    margin-right: 15px; /* 링크 간 간격 */
     color: #000; /* 기본 텍스트 색상 */
     text-decoration: none; /* 밑줄 제거 */
     cursor: pointer; /* 클릭 가능한 스타일 */
@@ -57,6 +63,7 @@
 .navbar-buttons {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap; /* 버튼이 줄바꿈 가능 */
 }
 
 /* 버튼 스타일 */
@@ -64,9 +71,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 130px; /* 버튼의 고정 너비 */
-    height: 50px; /* 버튼의 고정 높이 */
-    font-size: 16px;
+    width: 120px; /* 버튼의 고정 너비 */
+    height: 40px; /* 버튼의 고정 높이 */
+    font-size: 14px;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -76,13 +83,13 @@
 
 /* 사전 등록 버튼 */
 .navbar-buttons .mypage-btn {
-    background-color:white;
+    background-color: white;
     color: black;
     border: 2px solid black;
 }
 
 .navbar-buttons .mypage-btn:hover {
-    background-color: lightgrey
+    background-color: lightgrey;
 }
 
 /* 로그인 버튼 */
@@ -94,4 +101,64 @@
 
 .navbar-buttons .logout-btn:hover {
     background-color: lightgrey;
+}
+
+/* 반응형 스타일 */
+/* 태블릿 크기 */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto; /* 높이 자동 조정 */
+        padding: 10px 20px; /* 여백 축소 */
+    }
+
+    .navbar-left span,
+    .navbar-title,
+    .navbar-link {
+        font-size: 18px; /* 글씨 크기 축소 */
+    }
+
+    .navbar-logo {
+        width: 40px;
+        height: 40px; /* 로고 크기 축소 */
+    }
+
+    .navbar-buttons .btn {
+        width: 100px;
+        height: 35px;
+        font-size: 12px; /* 버튼 크기 축소 */
+    }
+}
+
+/* 모바일 크기 */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column; /* 수직 정렬 */
+        padding: 10px; /* 패딩 축소 */
+    }
+
+    .navbar-left {
+        justify-content: center; /* 중앙 정렬 */
+        margin-bottom: 10px; /* 버튼 그룹과 간격 */
+    }
+
+    .navbar-buttons {
+        justify-content: center; /* 버튼 그룹 중앙 정렬 */
+        gap: 5px; /* 버튼 간 간격 축소 */
+    }
+
+    .navbar-left span,
+    .navbar-title {
+        font-size: 16px; /* 글씨 크기 축소 */
+    }
+
+    .navbar-logo {
+        width: 35px;
+        height: 35px; /* 로고 크기 축소 */
+    }
+
+    .navbar-buttons .btn {
+        width: 90px;
+        height: 30px;
+        font-size: 12px; /* 버튼 크기 축소 */
+    }
 }

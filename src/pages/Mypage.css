@@ -1,48 +1,39 @@
-/* 전체 페이지를 차지하는 컨테이너 */
 .mypage-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* 페이지 높이를 브라우저 창 크기로 설정 */
+    min-height: 100vh;
     box-sizing: border-box;
-    align-items: center; /* 페이지 전체 중앙 정렬 */
+    align-items: center;
+    overflow-x: hidden; /* 좌우 스크롤 방지 */
 }
 
-/* 페이지 전체 최대 너비와 좌우 여백 조정 */
 .mypage-container {
     flex: 1;
     width: 100%;
-    max-width: 1200px; /* 페이지 최대 너비 제한 */
-    padding: 20px 30px; /* 상하좌우 여백 */
-    margin: 0 auto; /* 좌우 중앙 정렬 */
+    max-width: 1200px;
+    padding: 20px; /* padding 값을 줄여 화면 초과 방지 */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* 너비를 부모 컨테이너에 맞춤 */
+    align-items: center;
 }
 
-/* 상단 헤더 섹션 */
 .mypage-header {
     display: flex;
-    justify-content: space-between; /* 헤더의 좌우 배치 */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 1200px;
     margin-bottom: 30px;
 }
 
-/* Header의 왼쪽 */
-.header-left {
-    flex: 1; /* 비율에 따라 확장 */
-}
-
 .header-left h1 {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 900;
     margin: 0;
-    text-align: left; /* 왼쪽 정렬 */
 }
 
-/* Header의 오른쪽 */
 .header-right {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -52,72 +43,206 @@
     background-color: #000;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 25px;
+    font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .code-upload-btn:hover {
     background-color: #333;
 }
 
-/* 중간 콘텐츠 */
+/* 프로필 리스트 섹션 */
 .mypage-content {
     display: flex;
-    align-items: center; /* 세로 정렬 */
-    gap: 40px; /* 이미지와 텍스트 간격 */
-    width: 100%; /* 부모 컨테이너의 너비에 맞춤 */
-    margin-top: 20px; /* 헤더와 간격 조정 */
+    flex-direction: column;
+    gap: 20px; /* 프로필 간 간격 */
+    width: 100%;
+    max-width: 800px; /* 너비 제한 */
 }
 
-/* 프로필 이미지 스타일 */
+.profile-info-container {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px; /* 내부 여백 감소 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    gap: 15px; /* 이미지와 텍스트 간 간격 */
+    flex-wrap: wrap; /* 화면이 작을 때 줄바꿈 허용 */
+}
+
 .profile-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
+    flex-shrink: 0;
+    width: 200px; /* 크기 축소 */
+    height: 200px;
+    border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 프로필 정보 */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    flex: 1;
+    gap: 10px;
+}
+
 .profile-info h2 {
-    font-size: 70px;
+    font-size: 24px;
     font-weight: bold;
-    margin: 0 0 10px;
+    margin: 0;
+    color: #333;
 }
 
 .profile-info p {
-    font-size: 32px;
-    margin: 0 0 20px;
-    color: #555;
+    font-size: 16px;
+    margin: 0;
+    color: #666;
 }
 
 .button-group {
     display: flex;
-    gap: 20px;
+    justify-content: flex-start; /* 버튼을 왼쪽 정렬 */
+    gap: 10px;
 }
 
 .download-btn {
     background-color: #ff3366;
     color: white;
     border: none;
-    padding: 20px 70px;
+    padding: 10px 20px; /* 크기 조정 */
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .download-btn:hover {
     background-color: #ff0044;
 }
 
-/* Footer */
-.footer-bar {
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 20px 15px;
-    border-top: 1px solid #ddd;
-    flex-shrink: 0; /* Footer가 축소되지 않도록 설정 */
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .mypage-container {
+        padding: 10px; /* 모바일에서 여백 축소 */
+    }
+
+    .profile-info-container {
+        flex-direction: column; /* 세로 배치 */
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 150px; /* 크기 축소 */
+        height: 150px;
+    }
+
+    .profile-info h2 {
+        font-size: 20px;
+    }
+
+    .profile-info p {
+        font-size: 14px;
+    }
+
+    .download-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .code-upload-btn{
+        font-size: 14px;
+        padding: 13px 23px;
+
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px; /* 화면 가장자리 여백 */
+    box-sizing: border-box; /* 패딩 포함 */
+}
+
+.modal-content {
+    background-color: #ffffff; /* 흰색 배경 */
+    padding: 30px; /* 넉넉한 내부 여백 */
+    border-radius: 15px; /* 둥근 모서리 */
+    width: 100%;
+    max-width: 500px; /* 최대 너비 제한 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    gap: 20px; /* 요소 간 간격 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* 부드러운 테두리 */
+}
+
+.modal-content h2 {
+    font-size: 24px; /* 제목 크기 */
+    font-weight: bold; /* 굵은 텍스트 */
+    color: #333; /* 텍스트 색상 */
+    margin-bottom: 10px; /* 제목과 입력창 간 간격 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.code-input {
+    width: 100%;
+    height: 80px; /* 높이 조정 */
+    padding: 15px; /* 내부 여백 */
+    font-size: 16px;
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    outline: none; /* 클릭 시 테두리 제거 */
+    background-color: #f9f9f9; /* 연한 배경색 */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* 안쪽 그림자 */
+    resize: none; /* 크기 조정 불가능 */
+    margin-bottom: 15px; /* 버튼과의 간격 */
+}
+
+.upload-btn,
+.close-btn {
+    width: 100%; /* 버튼 전체 너비 */
+    max-width: 200px; /* 버튼 최대 너비 제한 */
+    padding: 12px 20px; /* 버튼 크기 */
+    font-size: 16px; /* 텍스트 크기 */
+    border: none; /* 테두리 제거 */
+    border-radius: 10px; /* 둥근 모서리 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.upload-btn {
+    background-color: #000000; /* 검정색 배경 */
+    color: white;
+}
+
+.upload-btn:hover {
+    background-color: #333333; /* 어두운 회색 배경 */
+    transform: scale(1.05); /* 살짝 확대 */
+}
+
+.close-btn {
+    background-color: #ff4444; /* 빨간색 배경 */
+    color: white;
+}
+
+.close-btn:hover {
+    background-color: #cc0000; /* 어두운 빨간색 배경 */
+    transform: scale(1.05); /* 살짝 확대 */
 }

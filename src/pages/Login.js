@@ -21,7 +21,7 @@ const Login = () => {
     };
     const handleGoogleLogin = () => {
         // window.location.href = "http://localhost:8080/oauth2/authorization/google";
-        window.location.href = "http://ec2-3-36-7-39.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google";
+        window.location.href ="http://ec2-3-36-7-39.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google";
     };
     return (
         <div>
