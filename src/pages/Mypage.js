@@ -115,12 +115,12 @@ const Mypage = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            alert("코드 업로드 성공!");
+            alert("코드 입력 성공! (새로 고침)");
             setInputCode('');
             toggleModal(); 
         } catch (error) {
             console.error("Failed to upload code:", error);
-            alert("코드 업로드 실패!");
+            alert("잘못된 코드입니다!");
         }
     };
 
@@ -135,7 +135,7 @@ const Mypage = () => {
                         </div>
                         <div className="header-right">
                             <button className="code-upload-btn" onClick={toggleModal}>
-                                코드 업로드
+                                코드 입력
                             </button>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ const Mypage = () => {
             {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
-                        <h2>코드 업로드</h2>
+                        <h2>코드 입력</h2>
                         <textarea
                             className="code-input"
                             value={inputCode}
@@ -183,7 +183,7 @@ const Mypage = () => {
                             placeholder="여기에 코드를 입력하세요."
                         />
                         <button className="upload-btn" onClick={handleUpload}>
-                            코드 업로드
+                            코드 입력
                         </button>
                         <button className="close-btn" onClick={toggleModal}>
                             닫기
