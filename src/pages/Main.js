@@ -15,7 +15,7 @@ const Main = () => {
 
                     <h1>CHAELLI</h1>
                     <p>세상에 단 한 마리밖에 없는 사이버 도마뱀을 분양합니다</p>
-                    <button className="main-button" onClick={() => navigate('/login')}>사전 등록하기</button>
+                    <button className="main-button" onClick={() => navigate('/login')}>도마뱀 입양하기</button>
                 </div>
 
                 <div className="main-right">

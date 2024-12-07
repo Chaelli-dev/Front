@@ -8,7 +8,11 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-left">
                 <img src="/images/logo.png" alt="Logo" className="navbar-logo" onClick={() => navigate('/detail')}/>
-                <span className="navbar-title" onClick={() => navigate('/detail')}>CHAELLI</span>
+                <div>
+                    <span onClick={() => navigate('/detail')}>PROJECT</span>
+                    <br/>
+                    <span onClick={() => navigate('/detail')}>CHAELLI</span>
+                </div>
                 <button className="navbar-link" onClick={() => navigate('/detail')}>About</button>
             </div>
             <div className="navbar-buttons">

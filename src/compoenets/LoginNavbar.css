@@ -15,13 +15,14 @@
     display: flex;
     align-items: center;
     gap: 10px; /* 로고와 텍스트, 링크 간 간격 */
-    flex-wrap: wrap; /* 줄바꿈 가능 */
+    cursor: pointer;
 }
 
 .navbar-left span {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 1000;
     color: #000;
+    margin-right: 30px; 
     transition: color 0.3s ease; /* 부드러운 전환 효과 */
 }
 
@@ -36,12 +37,11 @@
     margin-right: 10px; /* 로고와 텍스트 간격 */
 }
 
-/* 타이틀 텍스트 */
-.navbar-title {
+/* .navbar-title {
     font-size: 24px;
     font-weight: 1000;
-    margin-right: 30px; /* 타이틀과 링크 간 간격 */
-}
+    margin-right: 30px; 
+} */
 
 .navbar-link {
     font-size: 20px;
