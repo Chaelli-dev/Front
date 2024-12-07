@@ -39,7 +39,7 @@ const Detail = () => {
                         &nbsp;와주세요.
                     </p>
 
-                    <img src="/images/detail_main_big.png" alt="About Project" className="detail-image" />
+                    <img src="/images/main.jpeg" alt="About Project" className="detail-image" />
                 </div>
 
                 <div className="detail-section detail-highlight">
