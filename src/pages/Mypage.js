@@ -6,9 +6,11 @@ import './Mypage.css';
 
 const Mypage = () => {
     const [profiles, setProfiles] = useState([]); // 여러 개의 프로필 정보를 담을 배열
-    const [isModalOpen, setIsModalOpen] = useState(false); // 모달창 열림 상태
+    const [isModalOpen, setIsModalOpen] = useState(false); // 코드 입력 모달
+    const [isTypeModalOpen, setIsTypeModalOpen] = useState(false); // 타입 선택 모달(코드 입력)
+    const [isTypeModalOpen1, setIsTypeModalOpen1] = useState(false); // 타입 선택 모달(사전등록)
     const [inputCode, setInputCode] = useState(''); // 입력 코드 값
-
+    const [inputType, setInputType] = useState('');
     // 쿼리 파라미터에서 토큰 가져오기
     const getTokenFromQuery = () => {
         const params = new URLSearchParams(window.location.search);
@@ -48,7 +50,8 @@ const Mypage = () => {
             }
 
             try {
-                const response = await fetch("https://www.chaelli.org/v1/api/user-images", {
+                // const response = await fetch("https://www.chaelli.org/v1/api/user-images", {
+                const response = await fetch("http://localhost:8080/v1/api/user-images", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
@@ -93,7 +96,22 @@ const Mypage = () => {
         setIsModalOpen(!isModalOpen);
     };
 
+    const toggleTypeModal = () => {
+        setIsTypeModalOpen(!isTypeModalOpen);
+    };
+
+    const closeTypeAndCode = (lizardType) => {
+        setInputType(lizardType);
+        setIsTypeModalOpen(!isTypeModalOpen);
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const toggleRegisterModal = () => {
+        setIsTypeModalOpen1(!isTypeModalOpen1);
+    };
     // 코드 업로드 요청
+
+
     const handleUpload = async () => {
         try {
             const token = getCookie("token");
@@ -102,13 +120,14 @@ const Mypage = () => {
                 return;
             }
 
-            const response = await fetch("https://www.chaelli.org/v1/api/upload-code", {
+            // const response = await fetch("https://www.chaelli.org/v1/api/upload-code", {
+            const response = await fetch("http://localhost:8080/v1/api/upload-code", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({ code: inputCode }),
+                body: JSON.stringify({ code: inputCode, type : inputType }),
             });
 
             if (!response.ok) {
@@ -117,13 +136,54 @@ const Mypage = () => {
             
             alert("코드 입력 성공! (새로 고침)");
             setInputCode('');
-            toggleModal(); 
+            setInputType('');
+            toggleModal();
         } catch (error) {
             console.error("Failed to upload code:", error);
             alert("잘못된 코드입니다!");
         }
     };
 
+
+    const handleAdoptLizard = async (lizardType) => {
+        try {
+            const token = getCookie("token");
+            if (!token) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
+            // const response = await fetch("https://www.chaelli.org/v1/api/lizard", {
+            const response = await fetch("http://localhost:8080/v1/api/lizard", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ type: lizardType }),
+            });
+            
+            let typeKorea = "temp";
+            if(lizardType === "fat_tailed"){
+                typeKorea = "펫테일게코";
+            }else{
+                typeKorea = "크레스티드게코";
+            }
+            console.log(response);
+            if (response.status === 200) {
+                alert(`${typeKorea} 입양이 완료되었습니다! (새로고침)`);
+                toggleRegisterModal();
+            } else if(response.status === 400){
+                alert('사전 등록 기간이 지났습니다.');
+                toggleRegisterModal();
+            }else if(response.status === 404){
+                alert('이미 입양한 도마뱀이 있습니다.');
+                toggleRegisterModal();
+            }
+        } catch (error) {
+            console.error('입양 요청 중 오류 발생:', error);
+            alert('입양 요청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        }
+    };
     return (
         <div>
             <LoginNavbar />
@@ -134,7 +194,7 @@ const Mypage = () => {
                             <h1>My Page</h1>
                         </div>
                         <div className="header-right">
-                            <button className="code-upload-btn" onClick={toggleModal}>
+                            <button className="code-upload-btn" onClick={toggleTypeModal}>
                                 코드 입력
                             </button>
                         </div>
@@ -168,6 +228,9 @@ const Mypage = () => {
                             <p>표시할 프로필 정보가 없습니다.</p>
                         )}
                     </div>
+                    <div className="button-section">
+                        <button className="main-button" onClick={toggleRegisterModal} >입양하기</button>
+                    </div>
                 </div>
             </div>
 
@@ -192,6 +255,81 @@ const Mypage = () => {
                 </div>
             )}
 
+            {isTypeModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>어떤 도마뱀을 입양하시겠습니까?</h2>
+                        <div className="lizard-options">
+                            <div className="lizard-option">
+                                <img
+                                    src="/images/fattail.png"
+                                    alt="펫테일게코"
+                                    className="lizard-image"
+                                />
+                                <button
+                                    className="lizard-button"
+                                    onClick={() => closeTypeAndCode('fat_tailed')}
+                                >
+                                    펫테일게코 입양하기
+                                </button>
+                            </div>
+
+                            <div className="lizard-option">
+                                <img
+                                    src="/images/crested.png"
+                                    alt="크레스티드게코"
+                                    className="lizard-image"
+                                />
+                                <button
+                                    className="lizard-button"
+                                    onClick={() => closeTypeAndCode('crested_gecko')}
+                                >
+                                    크레스티드게코 입양하기
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            )}
+
+            {isTypeModalOpen1 && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>어떤 도마뱀을 입양하시겠습니까?</h2>
+
+                        <div className="lizard-options">
+                            <div className="lizard-option">
+                                <img
+                                    src="/images/fattail.png"
+                                    alt="펫테일게코"
+                                    className="lizard-image"
+                                />
+                                <button
+                                    className="lizard-button"
+                                    onClick={() => handleAdoptLizard('fat_tailed')}
+                                >
+                                    펫테일게코 입양하기
+                                </button>
+                            </div>
+
+                            <div className="lizard-option">
+                                <img
+                                    src="/images/crested.png"
+                                    alt="크레스티드게코"
+                                    className="lizard-image"
+                                />
+                                <button
+                                    className="lizard-button"
+                                    onClick={() => handleAdoptLizard('crested_gecko')}
+                                >
+                                    크레스티드게코 입양하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             <FooterBar />
         </div>
     );
