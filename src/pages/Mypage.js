@@ -11,6 +11,8 @@ const Mypage = () => {
     const [isTypeModalOpen1, setIsTypeModalOpen1] = useState(false); // 타입 선택 모달(사전등록)
     const [inputCode, setInputCode] = useState(''); // 입력 코드 값
     const [inputType, setInputType] = useState('');
+    const [userInfo, setUserInfo] = useState('');
+
     // 쿼리 파라미터에서 토큰 가져오기
     const getTokenFromQuery = () => {
         const params = new URLSearchParams(window.location.search);
@@ -30,6 +32,8 @@ const Mypage = () => {
         return matches ? decodeURIComponent(matches[1]) : undefined;
     };
 
+
+
     // 페이지 로드 시 쿼리 파라미터에서 토큰을 가져와 쿠키에 저장
     useEffect(() => {
         const token = getTokenFromQuery();
@@ -38,6 +42,7 @@ const Mypage = () => {
             console.log("Token saved to cookies:", token);
         }
     }, []);
+
 
     // 페이지가 로드될 때 GET 요청
     useEffect(() => {
@@ -50,8 +55,8 @@ const Mypage = () => {
             }
 
             try {
-                // const response = await fetch("https://www.chaelli.org/v1/api/user-images", {
-                const response = await fetch("http://localhost:8080/v1/api/user-images", {
+                const response = await fetch("https://www.chaelli.org/v1/api/user-images", {
+                // const response = await fetch("http://localhost:8080/v1/api/user-images", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
@@ -65,6 +70,40 @@ const Mypage = () => {
                 const data = await response.json();
                 console.log("Response data:", data); // 응답 데이터를 콘솔에 출력
                 setProfiles(data); // 응답 데이터를 바로 설정
+            } catch (error) {
+                console.error("Failed to fetch profile data:", error);
+            }
+        };
+
+        fetchProfileData();
+    }, []);
+
+    // 페이지가 요청될 떄 GET 요청
+    useEffect(() => {
+        const fetchProfileData = async () => {
+            const token = getCookie("token"); // 쿠키에서 토큰 읽기
+
+            if (!token) {
+                console.error("Token not found in cookies");
+                return;
+            }
+
+            try {
+                const response = await fetch("https://www.chaelli.org/v1/api/user-info", {
+                // const response = await fetch("http://localhost:8080/v1/api/user-info", {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log("User Info data:", data); // 응답 데이터를 콘솔에 출력
+                setUserInfo(data); // 응답 데이터를 바로 설정
             } catch (error) {
                 console.error("Failed to fetch profile data:", error);
             }
@@ -91,7 +130,6 @@ const Mypage = () => {
         }
     };
 
-    // 모달 열기/닫기
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -120,20 +158,20 @@ const Mypage = () => {
                 return;
             }
 
-            // const response = await fetch("https://www.chaelli.org/v1/api/upload-code", {
-            const response = await fetch("http://localhost:8080/v1/api/upload-code", {
+            const response = await fetch("https://www.chaelli.org/v1/api/upload-code", {
+            // const response = await fetch("http://localhost:8080/v1/api/upload-code", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({ code: inputCode, type : inputType }),
+                body: JSON.stringify({ code: inputCode, type: inputType }),
             });
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            
+
             alert("코드 입력 성공! (새로 고침)");
             setInputCode('');
             setInputType('');
@@ -152,8 +190,8 @@ const Mypage = () => {
                 alert("로그인이 필요합니다.");
                 return;
             }
-            // const response = await fetch("https://www.chaelli.org/v1/api/lizard", {
-            const response = await fetch("http://localhost:8080/v1/api/lizard", {
+            const response = await fetch("https://www.chaelli.org/v1/api/lizard", {
+            // const response = await fetch("http://localhost:8080/v1/api/lizard", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -161,21 +199,21 @@ const Mypage = () => {
                 },
                 body: JSON.stringify({ type: lizardType }),
             });
-            
+
             let typeKorea = "temp";
-            if(lizardType === "fat_tailed"){
+            if (lizardType === "fat_tailed") {
                 typeKorea = "펫테일게코";
-            }else{
+            } else {
                 typeKorea = "크레스티드게코";
             }
             console.log(response);
             if (response.status === 200) {
                 alert(`${typeKorea} 입양이 완료되었습니다! (새로고침)`);
                 toggleRegisterModal();
-            } else if(response.status === 400){
+            } else if (response.status === 400) {
                 alert('사전 등록 기간이 지났습니다.');
                 toggleRegisterModal();
-            }else if(response.status === 404){
+            } else if (response.status === 404) {
                 alert('이미 입양한 도마뱀이 있습니다.');
                 toggleRegisterModal();
             }
@@ -191,7 +229,8 @@ const Mypage = () => {
                 <div className="mypage-container">
                     <div className="mypage-header">
                         <div className="header-left">
-                            <h1>My Page</h1>
+                            <h1>{userInfo.userName}님의 도마뱀</h1>
+                            <p>Email : {userInfo.userEmail}</p>
                         </div>
                         <div className="header-right">
                             <button className="code-upload-btn" onClick={toggleTypeModal}>
@@ -225,7 +264,9 @@ const Mypage = () => {
                                 </div>
                             ))
                         ) : (
-                            <p>표시할 프로필 정보가 없습니다.</p>
+                            <div className="none-nft">
+                                <h1>아직 입양하신 도마뱀이 없습니다.</h1>
+                            </div>
                         )}
                     </div>
                     <div className="button-section">
