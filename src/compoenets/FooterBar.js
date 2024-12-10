@@ -24,13 +24,14 @@ const FooterBar = () => {
         }
 
         try {
-            const response = await fetch('http://3.36.7.39:8080/v1/api/send-nft', {
+            const response = await fetch('https://www.chaelli.org/v1/api/send-nft', {
+            // const response = await fetch('http://localhost:8080/v1/api/send-nft', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`, 
                 },
-                body: JSON.stringify({ code : walletAddress }),
+                body: JSON.stringify({ wallet : walletAddress }),
             });
 
             if (!response.ok) {
